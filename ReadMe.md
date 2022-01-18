@@ -42,5 +42,5 @@ We are using Spring security to disable or enable Feature for the Users.
 
 ## License:
 
-MIT © Mohamed Elshabrawy
+Unlicense © Mohamed Elshabrawy
 
