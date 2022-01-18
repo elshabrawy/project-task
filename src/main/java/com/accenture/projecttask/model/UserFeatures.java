@@ -23,8 +23,8 @@ import lombok.NoArgsConstructor;
 
 public class UserFeatures {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	@ManyToOne
 	private User user;
 	@ManyToOne

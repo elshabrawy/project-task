@@ -7,5 +7,5 @@ import com.accenture.projecttask.model.Feature;
 
 @Repository
 public interface FeatureRepository extends JpaRepository<Feature, Long>{
-
+    boolean existsByName(String name);
 }

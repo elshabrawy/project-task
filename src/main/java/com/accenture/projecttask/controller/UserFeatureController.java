@@ -1,17 +1,13 @@
 package com.accenture.projecttask.controller;
 
 import java.util.List;
+
+import com.accenture.projecttask.model.User;
+import com.accenture.projecttask.model.UserFeatures;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.accenture.projecttask.model.Feature;
 import com.accenture.projecttask.service.UserFeaturesService;
 
@@ -32,15 +28,24 @@ public class UserFeatureController {
 
 	}
 
-	@Secured("ROLE_ADMIN")
-	@DeleteMapping("/{userId}/{featureId}")
-	public void disableFeature(@PathVariable Long userId, @PathVariable Long featureId) {
-		userFeaturesService.disableFeature(userId, featureId);
+	@GetMapping
+	@ResponseStatus(value = HttpStatus.OK)
+	public List<UserFeatures> getAllUserFeatures() {
+		return userFeaturesService.findAll();
+
 	}
 
 	@Secured("ROLE_ADMIN")
-	@PutMapping("/{userId}")
-	public void enableFeature(@PathVariable Long userId, @RequestBody Feature feature) {
-		userFeaturesService.enableFeature(userId, feature);
+	@DeleteMapping("/{userFeatureId}")
+	public void disableFeature(@PathVariable Long userFeatureId) {
+
+		userFeaturesService.disableFeature(userFeatureId);
+	}
+
+	@Secured("ROLE_ADMIN")
+	@PostMapping("/enable")
+	public void enableFeature(@RequestBody UserFeatures userFeatures) {
+
+		userFeaturesService.enableFeature(userFeatures);
 	}
 }

@@ -19,7 +19,7 @@ import com.accenture.projecttask.impl.UserDetailsServiceImpl;
 
 public class AuthFilter extends OncePerRequestFilter {
 	@Autowired
-	UserDetailsServiceImpl userDetailsService;
+	UserDetailsServiceImpl userDetailsServiceImpl;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -27,7 +27,7 @@ public class AuthFilter extends OncePerRequestFilter {
 		// TODO Auto-generated method stub
 		String name = request.getHeader("name");
 		if (name != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			UserDetails userDetails = userDetailsService.loadUserByUsername(name);
+			UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(name);
 			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
 					null, userDetails.getAuthorities());
 

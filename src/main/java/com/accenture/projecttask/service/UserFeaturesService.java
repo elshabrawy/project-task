@@ -3,13 +3,16 @@ package com.accenture.projecttask.service;
 import java.util.List;
 
 import com.accenture.projecttask.model.Feature;
+import com.accenture.projecttask.model.UserFeatures;
 
 public interface UserFeaturesService {
 	List<Feature> getAllFeaturesByUserId(Long userId);
 
-	void disableFeature(Long userid, Long featureId);
+    List<UserFeatures>findAll();
 
-	void enableFeature(Long userId, Feature feature);
+	void disableFeature(Long userFeautureId);
+
+	UserFeatures enableFeature(UserFeatures userFeauture);
 
 
 }
