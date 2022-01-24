@@ -22,7 +22,7 @@ insure java 11, Gradle and MYSQL are installed.
 
 ###Build steps: ###
 
-1- Create MYSQL schema and name it Features with username = admin and password=123 and make sure to change the password for production environment.
+1- Create MYSQL schema and name it Feature with username = admin and password=123 and make sure to change the password for production environment.
 
 2- Dir into project folder.
 
@@ -30,7 +30,72 @@ insure java 11, Gradle and MYSQL are installed.
 
     gradle build
     gradle run
-    
+
+4- for adding feature:
+
+​           URL: serverIP:serverPort/api//addFeature
+
+​          Type of method: POST
+
+​          Request Body:  JSON {"name":"adding"}
+
+​		  Request Header: username that has ADMIN Role
+
+​          Response: HTTP-Status 200
+
+5- for enable the feature to user:
+
+​          URL: serverIP:serverPort/api//enableFeature/{userName}/{featureName}
+
+​          Type of method: POST
+
+​          Request Body:  JSON {"username":"mohamed","featureName":"adding"}
+
+​		  Request Header: username that has ADMIN Role
+
+​          Response: HTTP-Status 200
+
+6- for disable feature from user:
+
+​         URL: serverIP:serverPort/api//disableFeature/{userName}/{featureName}
+
+​          Type of method: DELETE
+
+​          Request Body:  JSON {"username":"mohamed","featureName":"adding"}
+
+​		  Request Header: username that has ADMIN Role
+
+​          Response: HTTP-Status 200
+
+7- for get all enabled feature:
+
+​         URL: serverIP:serverPort/api//getAllUserFeature/{userName}
+
+​          Type of method: GET
+
+​          Request Body:  JSON {"username":"mohamed"}
+
+​		  Request Header: username that has any Role
+
+​          Response: HTTP-Status 200
+
+​		  Response Body: JSON { "userName": "mohamed",
+
+​                                                      "allEnabledFeatures": [
+
+​                                                                    "saving",
+
+​                                                                     "adding"
+
+​                                                      ],
+
+​                                                      "allUsersEnabledFeatures": [
+
+​                                                                     "saving"
+
+​                                                     ]
+
+​                                                }
 
 ## Security:
 
